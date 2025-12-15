@@ -1,0 +1,10 @@
+{
+    "BATCH_SIZE": 16,
+    "SHUFFLE": true,
+    "LEARNING_RATE":0.001,
+    "DROPOUT":0.5,
+    "N_EPOCHS":2,
+    "DEVICE": "cuda:0",
+    "MEAN":[0.5706329, 0.5461266, 0.76312],
+    "STD":[0.16920634, 0.151464, 0.14013906]
+}

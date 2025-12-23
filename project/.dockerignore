@@ -1,0 +1,6 @@
+Dockerfile
+Dockerfile.prod
+.venv
+pyproject.toml
+uv.lock
+python-version

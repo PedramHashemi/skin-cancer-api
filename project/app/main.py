@@ -1,5 +1,6 @@
 """API For Skin Cancer Detection Tool."""
 
+import os
 import json
 import logging
 import torch
@@ -7,9 +8,8 @@ import numpy as np
 from fastapi import FastAPI, Depends, UploadFile, HTTPException
 from torchvision import transforms
 from contextlib import asynccontextmanager
-from app.config import get_settings, Settings
+# from app.config import get_settings, Settings
 from app.utils.tools import load_model
-# from schemas import ImageClass
 from PIL import Image
 
 
@@ -21,6 +21,7 @@ async def lifespan(app: FastAPI):
 
     # Device
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    device='cpu'
     
     # Load pipeline configuration
     with open("./app/configs/pipeline.json", "r") as f:
@@ -49,12 +50,11 @@ app = FastAPI(
 )
 
 @app.get("/")
-async def root(settings: Settings = Depends(get_settings)):
+async def root():
     """Root Endpoint."""
     return {
         "message": "Welcome to the Skin Cancer Detection Tool API",
-        "environment": settings.environment,
-        "testing": settings.testing
+        "environment": os.environ["ENVIRONMENT"]
     }
 
 @app.get("/health")
@@ -72,9 +72,7 @@ async def upload_image(skin_image: UploadFile):
         with torch.no_grad():
             logits = model(img)
             probs = torch.softmax(logits, dim=1)
-            class_id = probs.argmax(dim=1).item()
-            confidence = probs.max(dim=1).values.item()
-            pred = pred.argmax(dim=1).detach().cpu().item()
+            pred = probs.argmax(dim=1).detach().cpu().item()
             print(pred)
 
     except Exception as e:

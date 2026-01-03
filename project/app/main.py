@@ -54,7 +54,7 @@ async def root():
     """Root Endpoint."""
     return {
         "message": "Welcome to the Skin Cancer Detection Tool API",
-        "environment": os.environ["ENVIRONMENT"]
+        "environment": os.environ.get("ENVIRONMENT", "dev")
     }
 
 @app.get("/health")

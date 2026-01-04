@@ -4,5 +4,6 @@ python-multipart>=0.0.21
 torch>=2.9.1
 torchvision>=0.24.1
 uvicorn>=0.38.0
+Pillow>=10.4.0
 httpx==0.28.1
 pytest==9.0.2

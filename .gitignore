@@ -1,3 +1,8 @@
 __pycache__
 project/.env-dev
 project/.env-prod
+.vscode/
+.env
+.env.*
+.DS_Store
+.pytest_cache/

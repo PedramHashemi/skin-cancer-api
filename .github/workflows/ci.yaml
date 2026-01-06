@@ -1,4 +1,4 @@
-name: CI Run Tests and Build Docker Image
+name: CI
 on:
   pull_request:
     branches:

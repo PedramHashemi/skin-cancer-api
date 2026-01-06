@@ -1,8 +1,8 @@
-name: CD Build the docker and push to registry
+name: CD
 on:
-  workflow_dispatch:
+  workflow_run:
     workflows:
-      ['CI Run Tests and Build Docker Image']
+      ['CI']
     types:
       - completed
 jobs:
@@ -24,8 +24,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-        run: |
-          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        
       - name: Push Docker Image to Docker Hub
         run: |
           docker tag skin-cancer-api:latest ${{ secrets.DOCKER_HUB_USERNAME }}/skin-cancer-api:latest

@@ -1,6 +1,9 @@
 services:
   web:
-    build: ./project
+    build:
+      context: ./project
+      args:
+        ENV: prod
     env_file:
       - ./project/.env-prod
     command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000

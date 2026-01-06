@@ -1,7 +1,11 @@
 Dockerfile
-Dockerfile.prod
 .venv
 __pycache__/
 .venv/
 *.pyc
-
+.env*
+uv.lock
+pylock.toml
+.python-version
+.pytest_cache/
+app/model/*.pth

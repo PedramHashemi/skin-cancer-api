@@ -1,6 +1,9 @@
 services:
   web:
-    build: ./project
+    build:
+      context: ./project
+      args:
+        ENV: dev
     command: python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     env_file:
       - ./project/.env-dev

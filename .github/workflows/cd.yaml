@@ -20,10 +20,10 @@ jobs:
           python-version: '3.11'
       - name: build docker image
         run: |
-          docker build -t skin-cancer-api:latest ./project
+          docker build -t skin-cancer:latest ./project
 
       - name: Log in and push to Docker Hub
         run: |
           docker login -u pedram86 -p ${{ secrets.DOCKERHUB_TOKEN_PROD }}
-          docker push pedram86/skin-cancer-api:latest
+          docker push pedram86/skin-cancer:latest
           

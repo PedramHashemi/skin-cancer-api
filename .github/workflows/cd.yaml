@@ -18,12 +18,12 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: build docker image
+      - name: Build docker image
         run: |
-          docker build -t skin-cancer:latest ./project
+          docker build ./project -t pedram86/skin-cancer:latest
 
       - name: Log in and push to Docker Hub
         run: |
-          docker login -u pedram86 -p ${{ secrets.DOCKERHUB_TOKEN_PROD }}
+          echo "${{ secrets.DOCKERHUB_TOKEN_PROD }}" | docker login -u pedram86 --password-stdin
           docker push pedram86/skin-cancer:latest
           
